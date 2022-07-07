@@ -1,0 +1,41 @@
+@import 'styles/variables';
+
+.button {
+  width: 375px;
+  height: 50px;
+  border-radius: 4px;
+  font-size: 20px;
+  line-height: 50px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  @include mq(sm) {
+    width: 100%;
+    height: 60px;
+    font-size: 24px;
+    line-height: 60px;
+  }
+}
+
+.button.blue {
+  background-color: var(--blue);
+  border: solid 2px var(--blue);
+  color: var(--white);
+}
+
+.button.orange {
+  background-color: var(--white);
+  border: solid 2px var(--orange);
+  color: var(--orange);
+}
+
+.button.gray {
+  background-color: var(--white);
+  border: solid 2px var(--gray);
+  color: var(--gray);
+}

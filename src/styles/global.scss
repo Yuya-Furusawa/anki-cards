@@ -1,0 +1,35 @@
+@import 'styles/variables';
+
+:root {
+  --blue: #211dcd;
+  --black: #222222;
+  --gray: #bfbfbf;
+  --white: #ffffff;
+  --orange: #fd8159;
+  --light-blue: #f6f9fc;
+  --green: #88c244;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+// Container
+.container {
+  width: 768px;
+  margin: 0 auto;
+
+  @include mq(sm) {
+    width: 95%;
+    margin: 0 auto;
+  }
+}

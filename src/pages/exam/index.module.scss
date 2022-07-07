@@ -1,0 +1,56 @@
+@import 'styles/variables';
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--blue);
+  margin-top: 60px;
+
+  @include mq(sm) {
+    margin-top: 40px;
+  }
+}
+
+.selectors {
+  display: flex;
+  flex-direction: column;
+  row-gap: 35px;
+  width: 100%;
+  margin-top: 50px;
+
+  @include mq(sm) {
+    row-gap: 60px;
+    margin-top: 40px;
+  }
+}
+
+.choice {
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+  width: 100%;
+
+  h3 {
+    font-size: 18px;
+    color: var(--black);
+  }
+
+  @include mq(sm) {
+    row-gap: 20px;
+    h3 {
+      font-size: 16px;
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  align-items: center;
+  margin-top: 150px;
+
+  @include mq(sm) {
+    margin-top: 250px;
+  }
+}
