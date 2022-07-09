@@ -21,6 +21,7 @@ const Exam: React.FC = () => {
   const [selectedMethod, setSelectedMethod] = React.useState<number>(0);
 
   const [cards, setCards] = React.useState<Card[]>([]);
+  const [testCards, setTestCards] = React.useState<Card[]>([]);
 
   const [modal, setModal] = React.useState<boolean>(false);
   const onCloseModal = React.useCallback(() => setModal(false), []);
@@ -36,18 +37,19 @@ const Exam: React.FC = () => {
       .then((data) => setDecks(data));
   }, []);
 
-  // テストするカードのリストを作成
-  // TODO: stateが変わる度にfetchするのはコストが高いので、最初に一回fetchしてあとから操作するように修正すべき
+  // カードデータを取得する
+  // 通信を抑える為に最初に一回だけ取得する
   React.useEffect(() => {
     fetch('/api/cards')
       .then((res) => res.json())
-      .then((cards) => cards.filter((card: Card) => card.deck === selectedDeck))
-      .then((cards) => {
-        if (selectedMethod === 1) return shuffleArray(cards);
-        return cards;
-      })
-      .then((cards) => setCards(cards));
-  }, [selectedDeck, selectedMethod]);
+      .then((cards) => setCards(cards))
+  }, []);
+
+  // テストするカードのリストを作成
+  React.useEffect(() => {
+    const filteredCards = cards.filter((card: Card) => card.deck === selectedDeck);
+    setTestCards(() => selectedMethod === 1 ? shuffleArray(filteredCards) : filteredCards);
+  }, [cards, selectedDeck, selectedMethod]);
 
   return (
     <>
@@ -85,7 +87,7 @@ const Exam: React.FC = () => {
         </div>
       </div>
 
-      {modal && <ExamModal examCardsList={cards} onCloseModal={onCloseModal} />}
+      {modal && <ExamModal examCardsList={testCards} onCloseModal={onCloseModal} />}
     </>
   );
 };
