@@ -26,8 +26,25 @@ const ExamCard: React.FC<Props> = React.memo(
       onMoveNext();
     }, [onMoveNext]);
 
+    // アドレスバーなどを除いた表示領域の高さを取得
+    const viewHeight = React.useMemo(() => window.innerHeight, []);
+
+    // 表示コンテンツの高さを取得
+    const cardSizeRef = React.useRef<HTMLDivElement | null>(null);
+    const [contentHeight, setContentHeight] = React.useState<number>(0);
+    React.useEffect(() => {
+      if (!cardSizeRef.current) return;
+      setContentHeight(cardSizeRef.current.clientHeight);
+    }, [cardSizeRef]);
+
+    // 画面の下に固定するため、どのくらい要素を下げるか計算する
+    const [offsetY, setOffsetY] = React.useState<number>(0);
+    React.useEffect(() => {
+      setOffsetY(viewHeight - contentHeight)
+    }, [viewHeight, contentHeight]);
+
     return (
-      <div className={styles.modal}>
+      <div className={styles.modal} ref={cardSizeRef} style={{['--offsetY' as any]: `${offsetY}px`}}>
         <div className={styles.boxes}>
           <div className={styles.box_container}>
             <p>おもて</p>

@@ -17,10 +17,10 @@
   @include mq(sm) {
     position: fixed;
     width: 100vw;
-    height: 80%;
-    top: auto;
+    height: auto;
+    top: var(--offsetY);
     left: auto;
-    bottom: 0;
+    bottom: auto;
     transform: none;
     -webkit-transform: none;
     -ms-transform: none;
@@ -35,7 +35,7 @@
 
   @include mq(sm) {
     flex-direction: column;
-    row-gap: 40px;
+    row-gap: 30px;
     margin-top: 10px;
   }
 }
@@ -88,6 +88,6 @@
   margin-top: 150px;
 
   @include mq(sm) {
-    margin-top: 60px;
+    margin-top: 40px;
   }
 }
