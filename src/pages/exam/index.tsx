@@ -42,13 +42,17 @@ const Exam: React.FC = () => {
   React.useEffect(() => {
     fetch('/api/cards')
       .then((res) => res.json())
-      .then((cards) => setCards(cards))
+      .then((cards) => setCards(cards));
   }, []);
 
   // テストするカードのリストを作成
   React.useEffect(() => {
-    const filteredCards = cards.filter((card: Card) => card.deck === selectedDeck);
-    setTestCards(() => selectedMethod === 1 ? shuffleArray(filteredCards) : filteredCards);
+    const filteredCards = cards.filter(
+      (card: Card) => card.deck === selectedDeck
+    );
+    setTestCards(() =>
+      selectedMethod === 1 ? shuffleArray(filteredCards) : filteredCards
+    );
   }, [cards, selectedDeck, selectedMethod]);
 
   return (
@@ -87,7 +91,9 @@ const Exam: React.FC = () => {
         </div>
       </div>
 
-      {modal && <ExamModal examCardsList={testCards} onCloseModal={onCloseModal} />}
+      {modal && (
+        <ExamModal examCardsList={testCards} onCloseModal={onCloseModal} />
+      )}
     </>
   );
 };
