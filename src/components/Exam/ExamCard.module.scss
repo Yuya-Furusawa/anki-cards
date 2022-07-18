@@ -15,8 +15,9 @@
   z-index: 20;
 
   @include mq(sm) {
+    position: fixed;
     width: 100vw;
-    height: 90vh;
+    height: 80%;
     top: auto;
     left: auto;
     bottom: 0;
@@ -87,6 +88,6 @@
   margin-top: 150px;
 
   @include mq(sm) {
-    margin-top: 90px;
+    margin-top: 60px;
   }
 }
