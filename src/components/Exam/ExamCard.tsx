@@ -72,6 +72,9 @@ const ExamCard: React.FC<Props> = React.memo(
           {checked && !isLast && (
             <Button color="blue" text="次に進む" onClick={onClickNext} />
           )}
+          {checked && isLast && (
+            <Spacer size='50px' />
+          )}
           <Button color="gray" text="テストをやめる" onClick={onCloseModal} />
         </div>
       </div>
