@@ -3,6 +3,7 @@ import * as React from 'react';
 import type { Card } from 'utils/types';
 import BlackFilter from 'components/BlackFilter';
 import ExamCard from './ExamCard';
+import useScrollLock from 'utils/useScrollLock';
 
 type Props = {
   examCardsList: Card[];
@@ -17,6 +18,8 @@ const ExamModal: React.FC<Props> = React.memo(
       () => setCardIndex((idx) => idx + 1),
       []
     );
+
+    useScrollLock(true);
 
     return (
       <>
