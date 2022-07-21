@@ -5,6 +5,7 @@ import { AppProps } from 'next/app';
 
 import 'styles/global.scss';
 import styles from './_app.module.scss';
+import Spacer from 'components/Spacer';
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <>
@@ -20,6 +21,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
     </nav>
     <main>
       <Component {...pageProps} />
+      <Spacer size='60px'/>
     </main>
   </>
 );

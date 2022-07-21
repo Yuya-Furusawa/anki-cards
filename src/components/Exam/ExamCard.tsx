@@ -4,6 +4,7 @@ import type { Card } from 'utils/types';
 
 import Button from 'components/Button';
 import styles from './ExamCard.module.scss';
+import Spacer from 'components/Spacer';
 
 type Props = {
   card: Card;
@@ -40,11 +41,15 @@ const ExamCard: React.FC<Props> = React.memo(
     // 画面の下に固定するため、どのくらい要素を下げるか計算する
     const [offsetY, setOffsetY] = React.useState<number>(0);
     React.useEffect(() => {
-      setOffsetY(viewHeight - contentHeight)
+      setOffsetY(viewHeight - contentHeight);
     }, [viewHeight, contentHeight]);
 
     return (
-      <div className={styles.modal} ref={cardSizeRef} style={{['--offsetY' as any]: `${offsetY}px`}}>
+      <div
+        className={styles.modal}
+        ref={cardSizeRef}
+        style={{ ['--offsetY' as any]: `${offsetY}px` }}
+      >
         <div className={styles.boxes}>
           <div className={styles.box_container}>
             <p>おもて</p>

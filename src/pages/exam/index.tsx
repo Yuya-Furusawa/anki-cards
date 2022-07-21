@@ -10,6 +10,7 @@ import styles from './index.module.scss';
 
 import type { Card, Deck } from 'utils/types';
 import ExamModal from '../../components/Exam/ExamModal';
+import Spacer from 'components/Spacer';
 
 const Exam: React.FC = () => {
   const [decks, setDecks] = React.useState<Deck[]>([]);
@@ -80,12 +81,14 @@ const Exam: React.FC = () => {
           </div>
         </div>
         <div className={styles.buttons}>
-          {selectedDeck !== 0 && selectedMethod !== 0 && (
+          {selectedDeck !== 0 && selectedMethod !== 0 ? (
             <Button
               color="blue"
               text="スタート"
               onClick={() => setModal(true)}
             />
+          ) : (
+            <Spacer size="50px" />
           )}
           <Button color="gray" text="トップに戻る" onClick={onClickBack} />
         </div>
