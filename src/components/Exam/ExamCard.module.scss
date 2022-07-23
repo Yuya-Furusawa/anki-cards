@@ -52,6 +52,10 @@
     line-height: 2;
   }
 
+  div {
+    white-space: pre-wrap;
+  }
+
   @include mq(sm) {
     width: 100%;
 
