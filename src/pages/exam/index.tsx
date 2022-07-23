@@ -10,6 +10,7 @@ import styles from './index.module.scss';
 
 import type { Card, Deck } from 'utils/types';
 import ExamModal from '../../components/Exam/ExamModal';
+import Spacer from 'components/Spacer';
 
 const Exam: React.FC = () => {
   const [decks, setDecks] = React.useState<Deck[]>([]);
@@ -42,13 +43,17 @@ const Exam: React.FC = () => {
   React.useEffect(() => {
     fetch('/api/cards')
       .then((res) => res.json())
-      .then((cards) => setCards(cards))
+      .then((cards) => setCards(cards));
   }, []);
 
   // テストするカードのリストを作成
   React.useEffect(() => {
-    const filteredCards = cards.filter((card: Card) => card.deck === selectedDeck);
-    setTestCards(() => selectedMethod === 1 ? shuffleArray(filteredCards) : filteredCards);
+    const filteredCards = cards.filter(
+      (card: Card) => card.deck === selectedDeck
+    );
+    setTestCards(() =>
+      selectedMethod === 1 ? shuffleArray(filteredCards) : filteredCards
+    );
   }, [cards, selectedDeck, selectedMethod]);
 
   return (
@@ -76,18 +81,22 @@ const Exam: React.FC = () => {
           </div>
         </div>
         <div className={styles.buttons}>
-          {selectedDeck !== 0 && selectedMethod !== 0 && (
+          {selectedDeck !== 0 && selectedMethod !== 0 ? (
             <Button
               color="blue"
               text="スタート"
               onClick={() => setModal(true)}
             />
+          ) : (
+            <Spacer size="50px" />
           )}
           <Button color="gray" text="トップに戻る" onClick={onClickBack} />
         </div>
       </div>
 
-      {modal && <ExamModal examCardsList={testCards} onCloseModal={onCloseModal} />}
+      {modal && (
+        <ExamModal examCardsList={testCards} onCloseModal={onCloseModal} />
+      )}
     </>
   );
 };
